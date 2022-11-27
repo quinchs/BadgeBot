@@ -30,7 +30,7 @@ public class BadgeCommandModule : StepModuleBase
             .AddField("Credentials",
                 "**DO NOT** share you user or bot tokens/credentials with anyone! This application " +
                 "is stateless and does not store any data sent to it. You can verify this " +
-                "by [viewing the source code](https://github.com/discord-net/Discord.Net).\n\n" +
+                "by [viewing the source code](https://github.com/quinchs/BadgeBot).\n\n" +
                 "**IT IS STRONGLY RECOMMENDED** to reset the credentials and or delete the application you used " +
                 "after the badge process has been completed.")
             .AddField("Scope",
