@@ -21,3 +21,11 @@ shoot me a message on Discord if you want your data removed.
 To avoid any potential damages related to this bot, only add it to a test/temp/dev server. 
 
 Invite the bot [here](https://discord.com/api/oauth2/authorize?client_id=1045723581654507590&scope=applications.commands)
+
+# How to use
+- Add the bot to a test server
+- Run `/badge`
+- Follow the prompts.
+
+## How it works
+You give the bot an application id, public key, and OAuth2 secret. It then creates a slash command on the application, and listens for that command to be used, its that simple. Shoutout to toonlink#0666 for the inspiration on the logic, they made https://discordactivedev.vercel.app/! 
