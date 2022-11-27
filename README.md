@@ -18,9 +18,9 @@ shoot me a message on Discord if you want your data removed.
 
 **PLEASE DO NOT INVITE TO PUBLIC SERVERS**
 
-To avoid any potential damages related to this bot, only add it to a test/temp/dev server. 
+To avoid any potential damages related to this bot, only add it to a test/temp/dev server for this bot. 
 
-Invite the bot [here](https://discord.com/api/oauth2/authorize?client_id=1045723581654507590&scope=applications.commands)
+Invite url: https://discord.com/api/oauth2/authorize?client_id=1045723581654507590&scope=applications.commands
 
 # How to use
 - Add the bot to a test server
