@@ -1,6 +1,7 @@
 ﻿using Discord.Rest;
 using Discord.Interactions;
 using System.Reflection;
+using EdgeDB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +14,30 @@ builder.Logging.AddConsole();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// TODO: metric and error logging with EdgeDB
-builder.Services.AddEdgeDB();
+
+var edgedbConfig = (IServiceProvider s) => new EdgeDBClientPoolConfig()
+{
+    Logger = s.GetRequiredService<ILoggerFactory>().CreateLogger<EdgeDBClient>(),
+    SchemaNamingStrategy = INamingStrategy.SnakeCaseNamingStrategy
+};
+
+#if DEBUG
+
+builder.Services.AddSingleton((s) => new EdgeDBClient(edgedbConfig(s)));
+
+#else
+
+builder.Services.AddSingleton((s) => new EdgeDBClient(new EdgeDBConnection
+{
+    Database = "BadgeBot",
+    Hostname = "edgedb",
+    Password = Environment.GetEnvironmentVariable("EDGEDB_PASSWORD"),
+    Port = 5656,
+    TLSSecurity = TLSSecurityMode.Insecure,
+    Username = "edgedb"
+}, edgedbConfig(s)));
+
+#endif
 
 var discordClient = new DiscordRestClient(new DiscordRestConfig
 {

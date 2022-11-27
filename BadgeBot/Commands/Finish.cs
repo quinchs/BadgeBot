@@ -5,9 +5,11 @@ using Discord.Rest;
 
 namespace BadgeBot.Commands
 {
-	public class Finish : RestInteractionModuleBase<RestInteractionContext>
+	public class Finish : StepModuleBase
 	{
-		[ComponentInteraction("finish-badge-*,*")]
+		public override int StepNumber => 4;
+
+        [ComponentInteraction("finish-badge-*,*")]
 		public async Task ExecuteAsync(string rawId, string secret)
 		{
 			if(!ulong.TryParse(rawId, out var appId))

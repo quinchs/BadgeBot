@@ -5,8 +5,10 @@ using Discord.Rest;
 namespace BadgeBot.Commands;
 
 
-public class BadgeCommandModule : RestInteractionModuleBase<RestInteractionContext>
+public class BadgeCommandModule : StepModuleBase
 {
+    public override int StepNumber => 0;
+
     [SlashCommand("badge", "Start the process of getting the badge")]
     public async Task ExecuteAsync()
     {

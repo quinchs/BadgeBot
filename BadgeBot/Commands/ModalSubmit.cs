@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.DataProtection.KeyManagement;
 
 namespace BadgeBot.Commands
 {
-	public partial class ModalSubmit : RestInteractionModuleBase<RestInteractionContext>
-	{
+	public partial class ModalSubmit : StepModuleBase
+    {
 		public const string BASE_ENDPOINT_URL = "https://bbot.quinch.dev";
 
-		[ModalInteraction("application_modal")]
+		public override int StepNumber => 3;
+
+        [ModalInteraction("application_modal")]
 		public async Task ExecuteAsync(ApplicationModal modal)
 		{
 			if(!ulong.TryParse(modal.ApplicationId, out var appId))
@@ -27,7 +29,7 @@ namespace BadgeBot.Commands
 
 			var appKey = modal.ApplicationKey!.Trim();
 
-			if(!PublicKeyRegex().IsMatch(appKey))
+			if(!Regex.IsMatch(appKey, @"^[a-f\d]{64}$"))
 			{
                 var embed = new EmbedBuilder()
                     .WithTitle("Invalid Application Key")
@@ -58,9 +60,6 @@ namespace BadgeBot.Commands
 
 			await RespondAsync(embed: finalStep.Build(), components: components.Build(), ephemeral: true);
         }
-
-        [GeneratedRegex("^[a-f\\d]{64}$")]
-        public static partial Regex PublicKeyRegex();
     }
 }
 

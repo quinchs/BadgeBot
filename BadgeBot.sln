@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1704.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BadgeBot", "BadgeBot\BadgeBot.csproj", "{965A338A-74B6-4BC2-B462-AD8DAA17A4FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BadgeBot", "BadgeBot\BadgeBot.csproj", "{965A338A-74B6-4BC2-B462-AD8DAA17A4FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BadgeBot.DB", "BadgeBot.DB\BadgeBot.DB.csproj", "{FC823900-7986-4693-B09F-7AAFB538FB96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{965A338A-74B6-4BC2-B462-AD8DAA17A4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{965A338A-74B6-4BC2-B462-AD8DAA17A4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{965A338A-74B6-4BC2-B462-AD8DAA17A4FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC823900-7986-4693-B09F-7AAFB538FB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC823900-7986-4693-B09F-7AAFB538FB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC823900-7986-4693-B09F-7AAFB538FB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC823900-7986-4693-B09F-7AAFB538FB96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

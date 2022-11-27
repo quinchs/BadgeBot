@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using BadgeBot.DB;
 using Discord;
 using Discord.Interactions;
 using Discord.Net;
 using Discord.Rest;
+using EdgeDB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BadgeBot.Controllers
@@ -13,20 +15,18 @@ namespace BadgeBot.Controllers
     public partial class BadgeGivingCallback : ControllerBase
 	{
         private readonly DiscordRestClient _client;
-        private readonly InteractionService _interactionService;
-        private readonly IServiceProvider _provider;
+        private readonly EdgeDBClient _edgedb;
 
-        public BadgeGivingCallback(DiscordRestClient client, InteractionService service, IServiceProvider provider)
+        public BadgeGivingCallback(EdgeDBClient edgedb, DiscordRestClient client)
         {
-            _provider = provider;
-            _interactionService = service;
             _client = client;
+            _edgedb = edgedb;
         }
 
         [HttpPost]
         public async Task<ActionResult> HandleCallbackAsync(string key)
         {
-            if (!KeyVerificationRegex().IsMatch(key))
+            if (!Regex.IsMatch(key, @"^[a-f\d]{64}$"))
                 return BadRequest();
 
             if (
@@ -51,6 +51,8 @@ namespace BadgeBot.Controllers
                 if (interaction is not RestSlashCommand slashCommand || slashCommand.Data.Name != "claim-badge")
                     return BadRequest();
 
+                await _edgedb.UpdateUsersStepsAsync(interaction.User.Id.ToString(), 5);
+
                 return Content(
                     slashCommand.Respond(embed: new EmbedBuilder()
                         .WithTitle(":tada: Congratulations :tada:")
@@ -68,9 +70,6 @@ namespace BadgeBot.Controllers
                 return Unauthorized();
             }
         }
-
-        [GeneratedRegex("^[a-f\\d]{64}$")]
-        private static partial Regex KeyVerificationRegex();
     }
 }
 

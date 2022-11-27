@@ -5,9 +5,11 @@ using Discord.Rest;
 
 namespace BadgeBot.Commands
 {
-	public class AcceptAndProceed : RestInteractionModuleBase<RestInteractionContext>
-	{
-		[ComponentInteraction("badge-accept")]
+	public class AcceptAndProceed : StepModuleBase
+    {
+		public override int StepNumber => 1;
+        
+        [ComponentInteraction("badge-accept")]
 		public async Task ExecuteAsync()
 		{
 			var embed = new EmbedBuilder()
