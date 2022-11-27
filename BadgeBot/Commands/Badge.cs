@@ -35,7 +35,7 @@ public class BadgeCommandModule : StepModuleBase
                 "after the badge process has been completed.")
             .AddField("Scope",
                 "**DO NOT** use a bot that is already being used for something! For this process " +
-                "please make sure you **create a new** application that is in zero servers.\nAdditionally," +
+                "please make sure you **create a new** application that is in zero servers.\nAdditionally, " +
                 "do not add said bot to a public server or a server that is not meant for testing/development.")
             .AddField("Legality",
                 "**BY CLICKING 'AGREE'** you acknowledge that any information you submit has the posibillity of being " +
